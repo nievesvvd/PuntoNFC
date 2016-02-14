@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">PuntoNFC</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_linterna_utility">LinternaUtility</string>
+    <string name="tieneNFC">Este dispositivo no es compatible con NFC.</string>
+    <string name="NFCnoActivo">NFC esta desactivado.</string>
+    <string name="NFCactivo">NFC esta activado.</string>
+    <string name="FindTag">Se ha encontrado la TAG</string>
+    <string name="mensajeLeido">"Mensaje leido!! Su contenido es: "</string>
+    <string name="mensajeFallido">El contenido del mensaje no es correcto</string>
 </resources>
