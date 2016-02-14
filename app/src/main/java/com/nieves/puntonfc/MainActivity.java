@@ -28,6 +28,12 @@ public class MainActivity extends AppCompatActivity {
     Intent intent = getIntent();
     private CameraManager linterna;
 
+    /**
+     * Metodo con el que inicializamos la aplicacion y comprobamos tanto si el dispositivo soporta NFC
+     * asi como que este activado o no el mismo
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
