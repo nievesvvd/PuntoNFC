@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Punto NFC. : Cada vez que un dispositivo lee una tag NFC, abre &quot;google.com&quot; en el navegador predeterminado.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Punto NFC.</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/nievesvvd/PuntoNFC">View on GitHub</a>
+
+          <h1 id="project_title">Punto NFC.</h1>
+          <h2 id="project_tagline">Cada vez que un dispositivo lee una tag NFC, abre &quot;google.com&quot; en el navegador predeterminado.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/nievesvvd/PuntoNFC/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/nievesvvd/PuntoNFC/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="pactica-3" class="anchor" href="#pactica-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pactica 3.</h2>
+
+<h2>
+<a id="android-gymkana" class="anchor" href="#android-gymkana" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ANDROID-GYMKANA</h2>
+
+<h3>
+<a id="aplicacion-punto-nfc" class="anchor" href="#aplicacion-punto-nfc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aplicacion Punto NFC.</h3>
+
+<h3>
+<a id="autores" class="anchor" href="#autores" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Autores</h3>
+
+<ul>
+<li>Samuel Peregrina Morillas</li>
+<li>Nieves Victoria Velásquez Díaz</li>
+</ul>
+
+<h3>
+<a id="duración-de-la-práctica" class="anchor" href="#duraci%C3%B3n-de-la-pr%C3%A1ctica" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Duración de la práctica.</h3>
+
+<p>Desde 12-Ene-2016 hasta 15-Feb-2016</p>
+
+<h3>
+<a id="breve-descripción-de-la-practica" class="anchor" href="#breve-descripci%C3%B3n-de-la-practica" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Breve descripción de la practica.</h3>
+
+<p>Para la realizacion de esta práctica, se programarán cinco aplicaciones android diferentes de forma que, cada una hace uso de los distintos sensores que posee el dispositivo android.</p>
+
+<h3>
+<a id="descripción-del-problema" class="anchor" href="#descripci%C3%B3n-del-problema" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Descripción del problema.</h3>
+
+<p>En esta aplicación trabajamos con aquellos dispositivos que soporten NFC, de forma que si el dispositivo lee una tag, o tarjeta, que tenga la etiqueta "hola" abrira la pagina de Google en el navegador.</p>
+
+<h3>
+<a id="clases" class="anchor" href="#clases" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Clases.</h3>
+
+<p>En este caso, se ha usado una sola clase, <strong>MainActivity</strong> en la que nos encargamos tanto de trabajar con el NFC como de ir a la pagina principal de Google.</p>
+
+<h3>
+<a id="metodos" class="anchor" href="#metodos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metodos.</h3>
+
+<p>Los métodos usados en esta clase han sido:</p>
+
+<ul>
+<li><p><strong>protected void onCreate(Bundle savedInstanceState):</strong> este metodo se divide en "varias partes". Primero vemos si el dispositivo soporta NFC, en caso de que no sea asi se mostrara un mensaje de error y se cerrara la aplicacion. Tras esto, vemos si el NFC esta activado y, en caso de no estarlo se mostrara un mensaje indicandolo. Finalmente, se creará un nuevo Intent con los datos correspondientes.</p></li>
+<li><p><strong>protected void onNewIntent(Intent intent):</strong> este método es llamado cada vez que el dispositivo detecta una tag y llama al metodo con el que realizaremos la lectura de las etiquetas.</p></li>
+<li><p><strong>public void leerTag(Intent intent):</strong> con este metodo nos encargamos de transformar el mensaje leido desde el dispositivo en tipo String, siempre y cuando haya un mensaje, en caso contrario se lanzara una excepcion. Una vez tenemos el mensaje en formato String, procederemos a compararlo con una <strong>Key</strong> que contiene el valor "hola", en caso de que el tag tenga el mismo contenido, se creara un nuevo intent que usaremos para lanzar una nueva actividad, abrir en el navegador por defecto la pagina principal de Google. En caso de que el contenido no coincida con el valor de <strong>Key</strong>, mostraremos su contenido e indicaremos que no es igual al preestablecido. Todo el proceso lo capturamos en un try catch de forma que si no se ha podido leer el mensaje se informe al usuario.</p></li>
+<li><p><strong>public static void setupForegroundDispatch(final Activity activity, NfcAdapter adapter):</strong> con este metodo nos encargamos de que al aproximar una tag de NFC al dispositivo solo se abra nuesta aplicacion y no otra, evitando asi errores o que pase nuesta aplicacion a segundo plano forzozamente y se active otra distinta. Este método se ha obtenido del blog de <a href="http://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278">Ralf Wondratschek</a>, asi como la estructura pincipal del programa.</p></li>
+<li><p><strong>public static void stopForegroundDispatch(final Activity activity, NfcAdapter adapter):</strong> con este otro metodo, evitamos que nuestra aplicaion sea la que se lance cada vez que el dispositivo se topa con un tag NFC, permitiendo actuar a las demas aplicaciones. Este método se ha obtenido del mismo lugar que el anterior.</p></li>
+<li><p><strong>protected void onResume():</strong> con este metodo indicamos que hara la aplicacion al volver del segundo plano. En este caso tras volver activamos <em>setupForegroundDispatch</em> para asegurarnos que todos los tags pasen por nuestra aplicacion.</p></li>
+<li><p><strong>protected void onPause():</strong> con este metodo indicamos lo que va a hacer la aplicacion al ser puesta en segundo plano. En este caso, llamaremos a <em>stopForegroundDispatch</em> para que no se mantenga la prioridad de lecturas de las tags NFC en nuestra aplicacion, de forma que otras puedan leer tags libremente aunque nuestra aplicacion siga abierta.</p></li>
+</ul>
+
+<h3>
+<a id="bibliografia" class="anchor" href="#bibliografia" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bibliografia</h3>
+
+<ul>
+<li><a href="http://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278">Blog de Ralf Wondratschek</a></li>
+<li><a href="http://stackoverflow.com/questions/12453658/reading-data-from-nfc-tag">Lectura de datos de una tag NFC</a></li>
+<li><a href="http://androcode.es/2013/04/nfc-i-explicacion-tutorial-basico-y-sorteo/">Funcionamiento basico de NFC</a></li>
+<li><a href="http://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application">Abrir enlaces desde android</a></li>
+<li><a href="http://www.developer.com/ws/android/nfc-programming-in-android.html">Ejemplo de porgramacion con NFC en android</a></li>
+<li><a href="http://developer.android.com/intl/es/guide/topics/connectivity/nfc/advanced-nfc.html#foreground-dispatch">Ejemplo de uso de Foreground Dispatch</a></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Punto NFC. maintained by <a href="https://github.com/nievesvvd">nievesvvd</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
