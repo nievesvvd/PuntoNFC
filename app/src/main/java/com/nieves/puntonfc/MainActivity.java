@@ -143,8 +143,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Metodo con el que interceptamos el que hacer cuando se detecta una nueva tag de NFC
      *
-     * @param activity
-     * @param adapter
+     * @param activity actividad en la que nos encontramos
+     * @param adapter  adaptador que vamos a usar, en este caso NFC
      */
 
     public static void setupForegroundDispatch(final Activity activity, NfcAdapter adapter) {
@@ -154,14 +154,14 @@ public class MainActivity extends AppCompatActivity {
 
         IntentFilter[] filters = new IntentFilter[1];
         String[][] techList = new String[][]{};
-        // Notice that this is the same filter as in our manifest.
+        
         filters[0] = new IntentFilter();
         filters[0].addAction(NfcAdapter.ACTION_NDEF_DISCOVERED);
         filters[0].addCategory(Intent.CATEGORY_DEFAULT);
         try {
             filters[0].addDataType("text/plain");
         } catch (IntentFilter.MalformedMimeTypeException e) {
-            throw new RuntimeException("Check your mime type.");
+            throw new RuntimeException("Revisa en tipo de Mime.");
         }
 
         adapter.enableForegroundDispatch(activity, pendingIntent, filters, techList);
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
      * Metodo con el que finalizamos el interceptar una nueva señal de la tag de NFC
      *
      * @param activity La peticion correspondiente  para detener foreground dispatch.
-     * @param adapter  The {@link NfcAdapter} used for the foreground dispatch.
+     * @param adapter  The {@link NfcAdapter} usado para el foreground dispatch.
      */
     public static void stopForegroundDispatch(final Activity activity, NfcAdapter adapter) {
         adapter.disableForegroundDispatch(activity);
